@@ -1,9 +1,13 @@
 package br.com.santander.medico.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Especialidade {
@@ -12,6 +16,8 @@ public class Especialidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	@OneToMany(mappedBy = "especialidade")
+	private Set<Medico> medicos = new HashSet<>();
 
 	public Especialidade(String nome) {
 		this.nome = nome;

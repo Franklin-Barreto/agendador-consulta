@@ -1,5 +1,6 @@
 package br.com.santander.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToOne;
 
@@ -7,7 +8,7 @@ import javax.persistence.OneToOne;
 public class Contato {
 
 	private String email;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Telefone telefone;
 
 	public Contato(String email, Telefone telefone) {

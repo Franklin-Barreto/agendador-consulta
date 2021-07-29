@@ -20,6 +20,7 @@ public class Agenda {
 	private LocalDateTime dataConsulta;
 	@ManyToOne
 	private Medico medico;
+	private boolean disponivel = true;
 
 	@ManyToOne
 	private Paciente paciente;
@@ -46,6 +47,14 @@ public class Agenda {
 
 	public Paciente getPaciente() {
 		return paciente;
+	}
+	
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+	
+	public boolean isDisponivel() {
+		return disponivel;
 	}
 
 }

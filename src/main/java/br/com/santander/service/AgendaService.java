@@ -6,19 +6,26 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.santander.medico.model.Medico;
+import br.com.santander.medico.model.dto.LiberarHorariosDto;
+import br.com.santander.medico.service.MedicoService;
+import br.com.santander.model.Agenda;
 import br.com.santander.repository.AgendaRepository;
 
 @Service
 public class AgendaService {
 
-	private AgendaRepository agendaRepository;
+	private final AgendaRepository agendaRepository;
+	private final MedicoService medicoService;
 
-	public AgendaService(AgendaRepository agendaRepository) {
+	public AgendaService(AgendaRepository agendaRepository, MedicoService medicoService) {
 		this.agendaRepository = agendaRepository;
+		this.medicoService = medicoService;
 	}
 
 	public List<LocalDateTime> obterHorarioLivre(Integer id, Integer mes, Integer dia) {
@@ -44,15 +51,15 @@ public class AgendaService {
 		return null;
 	}
 
-	public List<Integer> diasDoMes(Integer medico, Integer mes) {
-		List<Integer> diasCheios = agendaRepository.buscarDiasDisponiveis(medico, LocalDate.now().getYear(), mes);
-		LocalDate mesMedico = LocalDate.of(LocalDate.now().getMonthValue(), Month.of(mes), 1);
-		List<Integer> dias = new ArrayList<>();
-		for (int i = 1; i <= mesMedico.lengthOfMonth(); i++) {
-			dias.add(i);
-		}
-		dias.removeAll(diasCheios);
-		return dias;
+	public List<Agenda> diasDoMes(Integer medico, Integer mes) {
+		return agendaRepository.buscarDiasDisponiveis(medico, LocalDate.now().getYear(), mes);
+	}
+
+	public List<Agenda> liberarHorarios(LiberarHorariosDto agenda) {
+		Medico medico = medicoService.buscarPorId(agenda.getMedicoId());
+		Set<Agenda> horarios = agenda.getHorarios().stream().map(h -> new Agenda(h, medico, null))
+				.collect(Collectors.toSet());
+		return agendaRepository.saveAll(horarios);
 	}
 
 }

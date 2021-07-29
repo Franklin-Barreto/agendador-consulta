@@ -3,12 +3,12 @@ package br.com.santander.medico.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import br.com.santander.model.Agenda;
+import br.com.santander.model.Endereco;
 import br.com.santander.model.Telefone;
 import br.com.santander.model.Usuario;
 
@@ -16,18 +16,19 @@ import br.com.santander.model.Usuario;
 public class Medico extends Usuario {
 
 	private String crm;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Especialidade especialidade;
-	
-	@OneToMany
+
+	@OneToMany(mappedBy = "medico")
 	private List<Agenda> agendas = new ArrayList<>();
 
-	public Medico(String nome, String crm, String email, Telefone telefone) {
-		super(nome, email, telefone);
+	public Medico(String nome, String crm, String email, Telefone telefone, Endereco endereco) {
+		super(nome, email, telefone, endereco);
 		this.crm = crm;
 	}
-	
-	protected Medico() {};
+
+	protected Medico() {
+	};
 
 	public String getCrm() {
 		return crm;
@@ -35,5 +36,9 @@ public class Medico extends Usuario {
 
 	public Especialidade getEspecialidade() {
 		return especialidade;
+	}
+
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
 	}
 }

@@ -10,8 +10,8 @@ import br.com.santander.model.Agenda;
 
 public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 
-	@Query("SELECT DAY(a.dataConsulta) as DIA,COUNT(a) as TOTAL FROM Agenda a WHERE a.medico.id = :medico and YEAR(dataConsulta) = :ano and MONTH(dataConsulta) = :mes GROUP BY DIA HAVING COUNT(a) > 8")
-	List<Integer> buscarDiasDisponiveis(Integer medico, Integer ano,Integer mes);
+	@Query("SELECT a FROM Agenda a WHERE a.disponivel = true and a.medico.id = :medico and YEAR(dataConsulta) = :ano and MONTH(dataConsulta) = :mes")
+	List<Agenda> buscarDiasDisponiveis(Integer medico, Integer ano,Integer mes);
 	
 	List<Agenda> findAllByMedicoIdAndDataConsultaAfter(Integer id,LocalDateTime dataConsulta);
 

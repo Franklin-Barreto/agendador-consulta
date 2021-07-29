@@ -3,13 +3,16 @@ package br.com.santander.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.santander.medico.model.dto.LiberarHorariosDto;
 import br.com.santander.service.AgendaService;
 
 @RestController
-@RequestMapping("agenda/")
+@RequestMapping("agenda")
 public class AgendaController {
 
 	private AgendaService agendaService;
@@ -29,5 +32,11 @@ public class AgendaController {
 			@PathVariable Integer dia) {
 
 		return ResponseEntity.ok().body(agendaService.obterHorarioLivre(medico, mes, dia));
+	}
+	
+	@PostMapping("/medico")
+	public ResponseEntity<?> liberarHorarios(@RequestBody LiberarHorariosDto agenda){
+		agendaService.liberarHorarios(agenda);
+		return null;
 	}
 }

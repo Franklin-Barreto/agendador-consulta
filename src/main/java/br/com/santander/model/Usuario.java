@@ -1,10 +1,12 @@
 package br.com.santander.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 @MappedSuperclass
 public class Usuario {
@@ -15,10 +17,14 @@ public class Usuario {
 	private String nome;
 	@Embedded
 	private Contato contato;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Endereco endereco;
 
-	public Usuario(String nome, String email, Telefone telefone) {
+	public Usuario(String nome, String email, Telefone telefone,Endereco endereco) {
 		this.nome = nome;
 		this.contato = new Contato(email, telefone);
+		this.endereco = endereco;
 	}
 
 	protected Usuario() {}
@@ -45,6 +51,10 @@ public class Usuario {
 
 	public String getTelefone() {
 		return contato.getTelefone().getDdd() + " " + contato.getTelefone().getNumero();
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
 

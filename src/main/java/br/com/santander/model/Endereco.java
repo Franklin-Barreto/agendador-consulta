@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco {
@@ -15,8 +14,6 @@ public class Endereco {
 	private String rua;
 	private String numero;
 	private String cidade;
-	@OneToOne
-	private Usuario usuario;
 
 	public Endereco(String rua, String numero, String cidade) {
 		this.rua = rua;
@@ -41,14 +38,6 @@ public class Endereco {
 
 	public String getCidade() {
 		return cidade;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 }
