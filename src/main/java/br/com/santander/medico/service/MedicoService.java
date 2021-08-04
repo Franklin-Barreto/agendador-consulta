@@ -1,5 +1,7 @@
 package br.com.santander.medico.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +32,10 @@ public class MedicoService {
 	public Medico buscarPorId(Integer medicoId) {
 		return medicoRepository.findById(medicoId)
 				.orElseThrow(() -> new EntityNotFoundException("Médico com id " + medicoId + " não encontrado"));
+	}
+
+	public List<Medico> buscarConsultas(Integer id) {
+		return medicoRepository.buscarAgendaPorMedicoId(id);
 	}
 
 }

@@ -1,6 +1,10 @@
 package br.com.santander.medico.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +29,14 @@ public class MedicoController {
 		System.out.println(medicoDto);
 		Medico medico = medicoService.salvar(medicoDto);
 		return ResponseEntity.ok(medico);
-
 	}
 
+	
+	@GetMapping("/consultas/{id}")
+	public ResponseEntity<?> consultas(@PathVariable Integer id){
+		
+		List<Medico> consultas =  medicoService.buscarConsultas(id);
+		return ResponseEntity.ok(consultas);
+	}
+	
 }
