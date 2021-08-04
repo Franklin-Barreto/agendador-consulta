@@ -15,4 +15,6 @@ public interface AgendaRepository extends JpaRepository<Agenda, Integer> {
 	
 	List<Agenda> findAllByMedicoIdAndDataConsultaAfter(Integer id,LocalDateTime dataConsulta);
 
+	List<Agenda> findAllByPacienteId(Integer id);
+
 }

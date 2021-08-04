@@ -62,4 +62,9 @@ public class AgendaService {
 		return agendaRepository.saveAll(horarios);
 	}
 
+	public List<Agenda> buscaConsultasPaciente(Integer id) {
+		
+		return agendaRepository.findAllByPacienteId(id);
+	}
+
 }
