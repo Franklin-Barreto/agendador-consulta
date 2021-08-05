@@ -30,8 +30,9 @@ public class Agenda {
 		this.medico = medico;
 		this.paciente = paciente;
 	}
-	
-	public Agenda() {}
+
+	public Agenda() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -48,13 +49,18 @@ public class Agenda {
 	public Paciente getPaciente() {
 		return paciente;
 	}
-	
+
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
-	
+
 	public boolean isDisponivel() {
 		return disponivel;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+		disponivel = false;
 	}
 
 }

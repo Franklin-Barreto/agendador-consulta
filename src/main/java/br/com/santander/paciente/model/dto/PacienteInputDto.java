@@ -1,6 +1,5 @@
 package br.com.santander.paciente.model.dto;
 
-import br.com.santander.medico.model.Medico;
 import br.com.santander.model.Endereco;
 import br.com.santander.model.Telefone;
 import br.com.santander.model.dto.EnderecoDtoInput;
