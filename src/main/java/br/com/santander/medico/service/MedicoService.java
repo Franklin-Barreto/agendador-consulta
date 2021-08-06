@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.santander.medico.model.Especialidade;
 import br.com.santander.medico.model.Medico;
+import br.com.santander.medico.model.dto.MedicoFiltroDto;
 import br.com.santander.medico.model.dto.MedicoInputDto;
 import br.com.santander.medico.repository.MedicoRepository;
+import br.com.santander.medico.repository.specification.MedicoSpecification;
 
 @Service
 public class MedicoService {
@@ -36,6 +39,15 @@ public class MedicoService {
 
 	public List<Medico> buscarConsultas(Integer id) {
 		return medicoRepository.buscarAgendaPorMedicoId(id);
+	}
+
+	public List<Medico> buscaTodosComParamentro(MedicoFiltroDto filtro) {
+		return medicoRepository.findAll(Specification
+				.where(
+						MedicoSpecification.porNome(filtro.getNome())
+						.or(MedicoSpecification.porCrm(filtro.getCrm())
+						.or(MedicoSpecification.porNumero(filtro.getNumero()))
+					)));
 	}
 
 }

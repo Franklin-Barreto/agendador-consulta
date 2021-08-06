@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.santander.medico.model.Medico;
+import br.com.santander.medico.model.dto.MedicoFiltroDto;
 import br.com.santander.medico.model.dto.MedicoInputDto;
 import br.com.santander.medico.service.MedicoService;
 
@@ -38,5 +39,11 @@ public class MedicoController {
 		List<Medico> consultas =  medicoService.buscarConsultas(id);
 		return ResponseEntity.ok(consultas);
 	}
+	
+	@GetMapping
+	public ResponseEntity<?> buscaTodos(MedicoFiltroDto filtro){
+		List<Medico> medicos= medicoService.buscaTodosComParamentro(filtro);	
+		return ResponseEntity.ok(medicos);
+	} 
 	
 }
