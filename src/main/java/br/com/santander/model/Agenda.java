@@ -1,5 +1,6 @@
 package br.com.santander.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -12,8 +13,12 @@ import br.com.santander.medico.model.Medico;
 import br.com.santander.paciente.model.Paciente;
 
 @Entity
-public class Agenda {
+public class Agenda implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

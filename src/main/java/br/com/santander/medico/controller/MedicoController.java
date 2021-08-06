@@ -41,9 +41,8 @@ public class MedicoController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<?> buscaTodos(MedicoFiltroDto filtro){
-		List<Medico> medicos= medicoService.buscaTodosComParamentro(filtro);	
-		return ResponseEntity.ok(medicos);
+	public List<Medico> buscaTodos(MedicoFiltroDto filtro){
+		return medicoService.buscaTodosComParamentro(filtro);
 	} 
 	
 }

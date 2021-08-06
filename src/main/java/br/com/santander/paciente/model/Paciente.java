@@ -9,6 +9,11 @@ import br.com.santander.model.Usuario;
 @Entity
 public class Paciente extends Usuario {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Paciente(String nome, String cpf, String email, Telefone telefone,Endereco endereco) {
 		super(nome, email, telefone,endereco);
 		this.cpf = cpf;
