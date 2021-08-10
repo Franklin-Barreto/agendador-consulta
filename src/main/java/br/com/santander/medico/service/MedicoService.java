@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -44,8 +43,7 @@ public class MedicoService {
 		return medicoRepository.buscarAgendaPorMedicoId(id);
 	}
 
-	@Cacheable(value = "Medicos",key = "#root.method.name" )
-	@CacheEvict(allEntries = true)
+	@Cacheable(value = "Medicos")
 	public List<Medico> buscaTodosComParamentro(MedicoFiltroDto filtro) {
 		return medicoRepository.findAll(Specification
 				.where(

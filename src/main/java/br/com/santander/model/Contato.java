@@ -1,18 +1,12 @@
 package br.com.santander.model;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToOne;
 
 @Embeddable
-public class Contato implements Serializable {
+public class Contato{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String email;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Telefone telefone;

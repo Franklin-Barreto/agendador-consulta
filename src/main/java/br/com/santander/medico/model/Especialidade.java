@@ -1,6 +1,5 @@
 package br.com.santander.medico.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,12 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Especialidade implements Serializable {
+public class Especialidade{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

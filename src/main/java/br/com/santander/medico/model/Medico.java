@@ -15,10 +15,6 @@ import br.com.santander.model.Usuario;
 @Entity
 public class Medico extends Usuario {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String crm;
 	@ManyToOne
 	private Especialidade especialidade;

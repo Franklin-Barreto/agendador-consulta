@@ -24,4 +24,11 @@ public class MedicoFiltroDto {
 		return numero;
 	}
 
+	@Override
+	public String toString() {
+		return "MedicoFiltroDto [nome=" + nome + ", crm=" + crm + ", numero=" + numero + "]";
+	}
+	
+	
+
 }
